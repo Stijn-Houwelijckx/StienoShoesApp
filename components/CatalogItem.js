@@ -3,14 +3,15 @@ import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
-const PopularCard = (props) => {
-  console.log(props.shoeImage);
+const CatalogItem = (props) => {
+  //   console.log(props.shoeImage);
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
         <Image
-          style={[styles.popularShoeImage, { width: 265, height: 166 }]}
-          source={{ uri: props.shoeImage }}
+          style={[styles.shoeImage, { width: 265, height: 166 }]}
+          //   source={{ uri: props.shoeImage }}
+          source={require("../assets/FlexFit-Fusion.png")}
         />
       </View>
       <View style={styles.textContainer}>
@@ -23,24 +24,22 @@ const PopularCard = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    gap: 8,
+    gap: 4,
+    backgroundColor: "#2E2E30",
+    borderRadius: 12,
+
+    paddingBottom: 44,
   },
   imageContainer: {
-    backgroundColor: "#2E2E30",
-    paddingVertical: 16,
-    paddingHorizontal: 8,
-    width: 281,
-    height: 198,
     alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 12,
   },
-  popularShoeImage: {
+  shoeImage: {
     resizeMode: "contain",
   },
   textContainer: {
     gap: 4,
     paddingHorizontal: 8,
+    alignItems: "center",
   },
   shoeName: {
     fontSize: 20,
@@ -52,4 +51,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopularCard;
+export default CatalogItem;

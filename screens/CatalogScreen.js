@@ -11,12 +11,15 @@ import {
 } from "react-native";
 
 import BottomNav from "../components/BottomNav";
+import CatalogItem from "../components/CatalogItem";
 
 const CatalogScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
-      {/* Your screen content */}
-      <Text>This is the Catalog Screen</Text>
+      <Text style={styles.title}>Catalog.</Text>
+      <View style={styles.catalogContainer}>
+        <CatalogItem shoeName="FlexFit Fusion" shoePrice="200.00" />
+      </View>
 
       {/* Bottom Navigation */}
       <BottomNav navigation={navigation} activeScreen={"Catalog"} />
@@ -27,8 +30,17 @@ const CatalogScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    backgroundColor: "#F8F6F6",
+    // justifyContent: "center",
+    backgroundColor: "#0F0F0F",
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: "#FFFFFF",
+    paddingLeft: 16,
+  },
+  catalogContainer: {
+    paddingHorizontal: 16,
   },
 
   // ======================

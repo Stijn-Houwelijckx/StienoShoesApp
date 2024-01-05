@@ -34,7 +34,9 @@ const HomeScreen = ({ navigation }) => {
       const response = await fetch(url, {
         method: "GET",
       });
+
       const json = await response.json();
+
       console.log(json.items);
       setProducts(json.items);
     } catch (error) {
