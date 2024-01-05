@@ -4,15 +4,20 @@ import IonIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const PopularCard = (props) => {
-  console.log(props.shoeImage);
+  //   console.log(props.shoeImage);
   return (
     <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <Image
-          style={[styles.popularShoeImage, { width: 265, height: 166 }]}
-          source={{ uri: props.shoeImage }}
-        />
-      </View>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => props.onSelectProduct(props.id)}
+      >
+        <View style={styles.imageContainer}>
+          <Image
+            style={[styles.popularShoeImage, { width: 265, height: 166 }]}
+            source={{ uri: props.shoeImage }}
+          />
+        </View>
+      </TouchableOpacity>
       <View style={styles.textContainer}>
         <Text style={styles.shoeName}>{props.shoeName}</Text>
         <Text style={styles.shoePrice}>Pricing € {props.shoePrice}</Text>

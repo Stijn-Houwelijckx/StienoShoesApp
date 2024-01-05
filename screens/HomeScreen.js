@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
 
       const json = await response.json();
 
-      console.log(json.items);
+      // console.log(json.items);
       setProducts(json.items);
     } catch (error) {
       console.error(error);
@@ -48,13 +48,13 @@ const HomeScreen = ({ navigation }) => {
     getProducts();
   }, []);
 
-  console.log(products);
+  // console.log(products);
 
   const replaceImageUrl = (imageUrl) => {
     if (Platform.OS == "android") {
       imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:52951");
     }
-    console.log(imageUrl);
+    // console.log(imageUrl);
     return imageUrl;
   };
 
@@ -70,9 +70,13 @@ const HomeScreen = ({ navigation }) => {
           {products.slice(0, 3).map((product, index) => (
             <PopularCard
               key={index}
+              id={product.id}
               shoeName={product.title}
               shoePrice={(product.price.amount / 100).toFixed(2)}
               shoeImage={replaceImageUrl(product.productImg)}
+              onSelectProduct={(selectedId) => {
+                navigation.navigate("Product", { id: selectedId });
+              }}
             />
           ))}
         </ScrollView>

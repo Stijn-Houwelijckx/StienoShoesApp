@@ -109,14 +109,15 @@ export default function App() {
             headerTitleAlign: "left",
             headerLeft: () => (
               <TouchableOpacity
-                style={{ marginLeft: 0 }} // Adjust the margin as needed
+                style={{ marginLeft: 0 }}
                 onPress={() => {
-                  navigation.navigate("Catalog"); // Navigate to the Catalog screen
+                  navigation.navigate("Catalog");
                 }}
               >
                 <Icon name="chevron-back-outline" size={24} color="#fff" />
               </TouchableOpacity>
             ),
+            animation: "none",
           })}
         />
 

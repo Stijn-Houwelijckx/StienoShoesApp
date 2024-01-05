@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
@@ -15,18 +15,83 @@ import BottomNav from "../components/BottomNav";
 import CatalogItem from "../components/CatalogItem";
 
 const CatalogScreen = ({ navigation }) => {
+  const [products, setProducts] = useState([]);
+
+  const getProducts = async () => {
+    try {
+      //10.0.2.2:60628
+      //http://stienoshoes.ddev.site/
+      let url;
+      if (Platform.OS == "android") {
+        //ddev describe om port number te weten te komen
+        url = "http://10.0.2.2:52951/api/catalog/";
+      } else {
+        url = "http://stienoshoes.ddev.site//api/catalog/";
+      }
+
+      const response = await fetch(url, {
+        method: "GET",
+      });
+
+      const json = await response.json();
+
+      // console.log(json.items);
+      setProducts(json.items);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    getProducts();
+  }, []);
+
+  // console.log(products);
+
+  // const replaceImageUrl = (imageUrl) => {
+  //   if (Platform.OS == "android") {
+  //     imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:52951");
+  //   }
+  //   console.log(imageUrl);
+  //   return imageUrl;
+  // };
+
   return (
     <View style={styles.screen}>
       <LinearGradient colors={["#FCAD72", "#FF626D"]} style={styles.background}>
         <Text style={styles.title}>Catalog.</Text>
       </LinearGradient>
 
-      {/* <Text style={styles.title}>Catalog.</Text> */}
-      <View style={styles.catalogContainer}>
-        <CatalogItem shoeName="FlexFit Fusion" shoePrice="200.00" />
-        <CatalogItem shoeName="FlexFit Fusion" shoePrice="200.00" />
-        <CatalogItem shoeName="FlexFit Fusion" shoePrice="200.00" />
-      </View>
+      <FlatList
+        style={styles.catalogContainer}
+        data={products}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => {
+          if (Platform.OS == "android") {
+            item.productImg = item.productImg.replace(
+              "stienoshoes.ddev.site",
+              "10.0.2.2:52951"
+            );
+          }
+
+          // console.log(item.productImg);
+          // console.log(
+          //   item.title + " = €" + (item.price.amount / 100).toFixed(2)
+          // );
+          return (
+            <CatalogItem
+              id={item.id}
+              shoeName={item.title}
+              shoePrice={(item.price.amount / 100).toFixed(2)}
+              shoeImage={item.productImg}
+              navigation={navigation}
+              onSelectProduct={(selectedId) => {
+                navigation.navigate("Product", { id: selectedId });
+              }}
+            />
+          );
+        }}
+      />
 
       {/* Bottom Navigation */}
       <BottomNav navigation={navigation} activeScreen={"Catalog"} />
@@ -55,7 +120,7 @@ const styles = StyleSheet.create({
   },
   catalogContainer: {
     paddingHorizontal: 16,
-    gap: 52,
+    marginBottom: 80,
   },
 
   // ======================
