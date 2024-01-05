@@ -1,58 +1,96 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Platform } from "react-native";
-// import { Dimensions } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Button, TouchableOpacity, Text } from "react-native";
+import Icon from "react-native-vector-icons/Ionicons";
+
+import HomeScreen from "./screens/HomeScreen";
+import CatalogScreen from "./screens/CatalogScreen";
+import ProductScreen from "./screens/ProductScreen";
+import CartScreen from "./screens/CartScreen";
+
+// const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 export default function App() {
-  // const windowWidth = Dimensions.get("window").width;
-  // const windowHeight = Dimensions.get("window").height;
-
-  // console.log("Height: " + windowHeight + " & Width: " + windowWidth);
-
-  const [products, setProduct] = useState([]);
-
-  const getProducts = async () => {
-    try {
-      //10.0.2.2:60856
-      //http://stienoshoes.ddev.site
-      let url;
-      if (Platform.OS == "android") {
-        //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:60856/api/catalog/";
-      } else {
-        url = "http://stienoshoes.ddev.site/api/catalog/";
-      }
-
-      const response = await fetch(url, {
-        method: "GET",
-      });
-      const json = await response.json();
-      // console.log(json.items);
-      setProduct(json.items);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    getProducts();
-  }, []);
-
-  console.log(products[0]);
-
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app! Test</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        {/* Home stack */}
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
+          options={{
+            // title: "My home",
+            headerStyle: { backgroundColor: "#f4511e" },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "left",
+
+            animation: "none",
+          }}
+        />
+
+        {/* Catalog stack */}
+        <Stack.Screen
+          name="Catalog"
+          component={CatalogScreen}
+          options={{
+            // title: "My home",
+            headerStyle: { backgroundColor: "#f4511e" },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "left",
+            // headerRight: () => (
+            //   <Button
+            //     onPress={() => alert("This is a button!")}
+            //     title="Info"
+            //     color="#fff"
+            //   />
+            // ),
+
+            headerBackVisible: false,
+            animation: "none",
+          }}
+        />
+
+        {/* Product stack */}
+        <Stack.Screen
+          name="Product"
+          component={ProductScreen}
+          options={({ navigation }) => ({
+            headerStyle: { backgroundColor: "#f4511e" },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "left",
+            headerLeft: () => (
+              <TouchableOpacity
+                style={{ marginLeft: 0 }} // Adjust the margin as needed
+                onPress={() => {
+                  navigation.navigate("Catalog"); // Navigate to the Catalog screen
+                }}
+              >
+                <Icon name="chevron-back-outline" size={24} color="#fff" />
+              </TouchableOpacity>
+            ),
+          })}
+        />
+
+        {/* Cart stack */}
+        <Stack.Screen
+          name="Cart"
+          component={CartScreen}
+          options={{
+            // title: "My home",
+            headerStyle: { backgroundColor: "#f4511e" },
+            headerTintColor: "#fff",
+            headerTitleStyle: { fontWeight: "bold" },
+            headerTitleAlign: "left",
+
+            headerBackVisible: false,
+            animation: "none",
+          }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
