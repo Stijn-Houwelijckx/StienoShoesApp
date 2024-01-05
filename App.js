@@ -1,6 +1,8 @@
+import React, { useState, useEffect } from "react";
+import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button, TouchableOpacity, Text } from "react-native";
+import { Button, TouchableOpacity, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 import HomeScreen from "./screens/HomeScreen";
@@ -12,6 +14,52 @@ import CartScreen from "./screens/CartScreen";
 const Stack = createNativeStackNavigator();
 
 export default function App() {
+  // const [logo, setLogo] = useState([]);
+
+  // const getLogo = async () => {
+  //   try {
+  //     let url;
+  //     if (Platform.OS === "android") {
+  //       url = "http://10.0.2.2:49332/api/header/";
+  //     } else {
+  //       url = "http://craft-news-b.ddev.site/api/header/";
+  //     }
+
+  //     const response = await fetch(url, {
+  //       method: "GET",
+  //     });
+  //     const jsonData = await response.json();
+
+  //     console.log("API Response:", jsonData);
+
+  //     // Check if 'items' array exists and has length > 0
+  //     if (jsonData.items && jsonData.items.length > 0) {
+  //       let logoUrl = jsonData.items[0].logo;
+
+  //       console.log("Logo URL before:", logoUrl);
+
+  //       // Check if logoUrl is defined before replacing
+  //       if (Platform.OS === "android" && logoUrl) {
+  //         logoUrl = logoUrl.replace("stienoshoes.ddev.site", "10.0.2.2:49332");
+  //       }
+
+  //       console.log("Logo URL after:", logoUrl);
+
+  //       setLogo([{ logo: logoUrl }]);
+  //     } else {
+  //       console.error("No items found in the response.");
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   getLogo();
+  // }, []);
+
+  // console.log(logo);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -20,12 +68,9 @@ export default function App() {
           name="Home"
           component={HomeScreen}
           options={{
-            // title: "My home",
-            headerStyle: { backgroundColor: "#f4511e" },
+            headerStyle: { backgroundColor: "#3D3D3F" },
             headerTintColor: "#fff",
-            headerTitleStyle: { fontWeight: "bold" },
             headerTitleAlign: "left",
-
             animation: "none",
           }}
         />
@@ -36,7 +81,7 @@ export default function App() {
           component={CatalogScreen}
           options={{
             // title: "My home",
-            headerStyle: { backgroundColor: "#f4511e" },
+            headerStyle: { backgroundColor: "#3D3D3F" },
             headerTintColor: "#fff",
             headerTitleStyle: { fontWeight: "bold" },
             headerTitleAlign: "left",
@@ -58,7 +103,7 @@ export default function App() {
           name="Product"
           component={ProductScreen}
           options={({ navigation }) => ({
-            headerStyle: { backgroundColor: "#f4511e" },
+            headerStyle: { backgroundColor: "#3D3D3F" },
             headerTintColor: "#fff",
             headerTitleStyle: { fontWeight: "bold" },
             headerTitleAlign: "left",
@@ -81,7 +126,7 @@ export default function App() {
           component={CartScreen}
           options={{
             // title: "My home",
-            headerStyle: { backgroundColor: "#f4511e" },
+            headerStyle: { backgroundColor: "#3D3D3F" },
             headerTintColor: "#fff",
             headerTitleStyle: { fontWeight: "bold" },
             headerTitleAlign: "left",
