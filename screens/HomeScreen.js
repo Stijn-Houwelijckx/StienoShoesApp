@@ -26,7 +26,7 @@ const HomeScreen = ({ navigation }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:52951/api/catalog/";
+        url = "http://10.0.2.2:56984/api/catalog/";
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -52,7 +52,7 @@ const HomeScreen = ({ navigation }) => {
 
   const replaceImageUrl = (imageUrl) => {
     if (Platform.OS == "android") {
-      imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:52951");
+      imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:56984");
     }
     // console.log(imageUrl);
     return imageUrl;

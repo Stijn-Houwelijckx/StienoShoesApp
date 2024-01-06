@@ -12,6 +12,9 @@ import {
 import { useFocusEffect } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
+import SizeSelector from "../components/SizeSelector";
+import FilledGradientButton from "../components/FilledGradientButton";
+
 const ProductScreen = ({ navigation, route }) => {
   const { id } = route.params;
 
@@ -24,7 +27,7 @@ const ProductScreen = ({ navigation, route }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:52951/api/catalog/";
+        url = "http://10.0.2.2:56984/api/catalog/";
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -46,7 +49,7 @@ const ProductScreen = ({ navigation, route }) => {
       if (Platform.OS == "android") {
         json.productImg = json.productImg.replace(
           "stienoshoes.ddev.site",
-          "10.0.2.2:52951"
+          "10.0.2.2:56984"
         );
       }
 
@@ -92,6 +95,13 @@ const ProductScreen = ({ navigation, route }) => {
 
       <View style={styles.infoContainer}>
         <Text style={styles.shoeDescription}>{product.productDescription}</Text>
+
+        <View style={styles.sizesContainer}>
+          <Text style={styles.sizesContainerTitle}>Select size</Text>
+          <SizeSelector sizes={product.sizes} />
+        </View>
+
+        <FilledGradientButton buttonText="+ Add to cart"></FilledGradientButton>
       </View>
 
       {/* <Text style={styles.text}>{(product.price.amount / 100).toFixed(2)}</Text> */}
@@ -153,10 +163,19 @@ const styles = StyleSheet.create({
     paddingTop: 28,
     height: "100%",
     borderRadius: 40,
+    gap: 40,
   },
   shoeDescription: {
     color: "#FFFFFF",
     fontSize: 16,
+  },
+  sizesContainer: {
+    gap: 8,
+  },
+  sizesContainerTitle: {
+    fontSize: 16,
+    color: "#909090",
+    textTransform: "uppercase",
   },
 
   // ======================

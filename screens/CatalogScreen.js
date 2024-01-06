@@ -24,7 +24,7 @@ const CatalogScreen = ({ navigation }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:52951/api/catalog/";
+        url = "http://10.0.2.2:56984/api/catalog/";
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -70,7 +70,7 @@ const CatalogScreen = ({ navigation }) => {
           if (Platform.OS == "android") {
             item.productImg = item.productImg.replace(
               "stienoshoes.ddev.site",
-              "10.0.2.2:52951"
+              "10.0.2.2:56984"
             );
           }
 
