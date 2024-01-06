@@ -13,9 +13,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import BottomNav from "../components/BottomNav";
 import CatalogItem from "../components/CatalogItem";
+import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 
 const CatalogScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
+  const { addToCart } = useSelectedItemsContext();
 
   const getProducts = async () => {
     try {
@@ -24,7 +26,7 @@ const CatalogScreen = ({ navigation }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:56984/api/catalog/";
+        url = "http://10.0.2.2:55033/api/catalog/";
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -41,6 +43,16 @@ const CatalogScreen = ({ navigation }) => {
       console.error(error);
     }
   };
+
+  // const handleAddToCart = (itemId) => {
+  //   // Check if the item is already in the cart
+  //   if (!selectedItemIds.includes(itemId)) {
+  //     // Add the item ID to the cart
+  //     setSelectedItemIds((prevIds) => [...prevIds, itemId]);
+  //   }
+  //   // console.log(selectedItemIds);
+  // };
+  // console.log(selectedItemIds);
 
   useEffect(() => {
     getProducts();
@@ -70,7 +82,7 @@ const CatalogScreen = ({ navigation }) => {
           if (Platform.OS == "android") {
             item.productImg = item.productImg.replace(
               "stienoshoes.ddev.site",
-              "10.0.2.2:56984"
+              "10.0.2.2:55033"
             );
           }
 
@@ -88,6 +100,8 @@ const CatalogScreen = ({ navigation }) => {
               onSelectProduct={(selectedId) => {
                 navigation.navigate("Product", { id: selectedId });
               }}
+              // onAddToCart={() => handleAddToCart(item.id)}
+              onAddToCart={() => addToCart(item.id)}
             />
           );
         }}

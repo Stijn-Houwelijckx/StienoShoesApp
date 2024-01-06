@@ -14,11 +14,14 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import SizeSelector from "../components/SizeSelector";
 import FilledGradientButton from "../components/FilledGradientButton";
+import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 
 const ProductScreen = ({ navigation, route }) => {
   const { id } = route.params;
 
   const [product, setProduct] = useState([]);
+
+  const { addToCart } = useSelectedItemsContext();
 
   const getProduct = async () => {
     try {
@@ -27,7 +30,7 @@ const ProductScreen = ({ navigation, route }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:56984/api/catalog/";
+        url = "http://10.0.2.2:55033/api/catalog/";
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -49,7 +52,7 @@ const ProductScreen = ({ navigation, route }) => {
       if (Platform.OS == "android") {
         json.productImg = json.productImg.replace(
           "stienoshoes.ddev.site",
-          "10.0.2.2:56984"
+          "10.0.2.2:55033"
         );
       }
 
@@ -101,7 +104,10 @@ const ProductScreen = ({ navigation, route }) => {
           <SizeSelector sizes={product.sizes} />
         </View>
 
-        <FilledGradientButton buttonText="+ Add to cart"></FilledGradientButton>
+        <FilledGradientButton
+          buttonText="+ Add to cart"
+          onPress={() => addToCart(product.id)}
+        />
       </View>
 
       {/* <Text style={styles.text}>{(product.price.amount / 100).toFixed(2)}</Text> */}
