@@ -37,7 +37,10 @@ const CatalogItem = (props) => {
         </View>
       </TouchableHighlight>
       <View style={styles.buttonContainer}>
-        <FilledGradientButton buttonText="+ Add to cart"></FilledGradientButton>
+        <FilledGradientButton
+          buttonText="+ Add to cart"
+          onPress={props.onAddToCart}
+        ></FilledGradientButton>
       </View>
     </View>
   );
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
     color: "#FFFFFF",
   },
   buttonContainer: {
-    width: 214,
+    width: 240,
     position: "absolute",
     bottom: -24,
   },
