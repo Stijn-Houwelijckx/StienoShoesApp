@@ -36,7 +36,7 @@ const SizeSelector = (props) => {
 
     return (
       <TouchableOpacity
-        style={[styles.radioButton, isSelected && styles.activeRadioButton]}
+        style={styles.radioButton}
         onPress={() => handleRadioButtonPress(item.value)}
       >
         <LinearGradient
@@ -75,9 +75,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     margin: 5,
-  },
-  activeRadioButton: {
-    // Add additional styling for the active state if needed
   },
   gradient: {
     // borderRadius: 8,
