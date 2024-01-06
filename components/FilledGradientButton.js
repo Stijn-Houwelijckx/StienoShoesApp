@@ -7,14 +7,20 @@ import { LinearGradient } from "expo-linear-gradient";
 const CatalogItem = (props) => {
   //   console.log(props.shoeImage);
   return (
-    <LinearGradient
-      colors={["#FCAD72", "#FF626D"]}
+    <TouchableOpacity
       style={styles.button}
-      start={{ x: 0, y: 0 }}
-      end={{ x: 1, y: 0 }}
+      activeOpacity={0.8}
+      onPress={props.onPress}
     >
-      <Text style={styles.buttonText}>{props.buttonText}</Text>
-    </LinearGradient>
+      <LinearGradient
+        colors={["#FCAD72", "#FF626D"]}
+        style={styles.button}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+      >
+        <Text style={styles.buttonText}>{props.buttonText}</Text>
+      </LinearGradient>
+    </TouchableOpacity>
   );
 };
 
