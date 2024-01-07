@@ -90,7 +90,6 @@ const CatalogScreen = ({ navigation }) => {
               onSelectProduct={(selectedId) => {
                 navigation.navigate("Product", { id: selectedId });
               }}
-              // onAddToCart={() => handleAddToCart(item.id)}
               onAddToCart={() => addToCart(item.id)}
             />
           );

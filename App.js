@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Button, TouchableOpacity, Text, Image } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import { SelectedItemsProvider } from "./components/SelectedItemsContext"; // Update the path
+import { SelectedItemsProvider } from "./components/SelectedItemsContext";
 
 import HomeScreen from "./screens/HomeScreen";
 import CatalogScreen from "./screens/CatalogScreen";

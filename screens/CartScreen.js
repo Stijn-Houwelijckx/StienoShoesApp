@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   FlatList,
   Button,
+  ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -18,7 +19,7 @@ import FilledGradientButton from "../components/FilledGradientButton";
 
 const CartScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
-  const { selectedItemIds, clearCart, portNumber } = useSelectedItemsContext();
+  const { selectedItems, clearCart, portNumber } = useSelectedItemsContext();
 
   const getProducts = async () => {
     try {
@@ -49,6 +50,10 @@ const CartScreen = ({ navigation }) => {
     getProducts();
   }, []);
 
+  console.log("Products:", products);
+
+  // console.log("CartScreen: " + selectedItems.itemId);
+
   return (
     <View style={styles.screen}>
       <View style={styles.cartContainer}>
@@ -69,21 +74,39 @@ const CartScreen = ({ navigation }) => {
             </LinearGradient>
           </TouchableOpacity>
         </View>
-        <View style={styles.cartContent}>
-          {selectedItemIds.length === 0 ? (
+        <ScrollView style={styles.cartContent}>
+          {console.log(
+            "CartScreen beforeCheck: " +
+              (selectedItems && selectedItems.length > 0
+                ? selectedItems
+                    .map(
+                      (item) => `itemId: ${item.itemId} count: ${item.count}`
+                    )
+                    .join(", ")
+                : "empty")
+          )}
+          {selectedItems.length === 0 ? (
             <Text style={styles.emptyText}>No items in the cart</Text>
           ) : (
             <>
               {/* Display the item IDs in the cart */}
-              {selectedItemIds.map((itemId) => {
+              {/* Map over products array instead of selectedItems */}
+              {/* Map over selectedItems */}
+              {selectedItems.map(({ itemId, count }) => {
                 const product = products.find((p) => p.id === itemId);
+
+                if (!product) {
+                  return null; // or handle the case when 'product' is undefined
+                }
+
                 return (
                   <CartItem
-                    key={itemId}
+                    key={product.id}
                     portNumber={portNumber}
                     shoeImage={product.productImg}
                     shoeName={product.title}
                     shoePrice={(product.price?.amount / 100)?.toFixed(2)}
+                    count={count}
                   />
 
                   // <Text key={itemId}>
@@ -93,7 +116,7 @@ const CartScreen = ({ navigation }) => {
               })}
             </>
           )}
-        </View>
+        </ScrollView>
         {/* Button to clear the items in the cart */}
       </View>
 
@@ -127,7 +150,8 @@ const styles = StyleSheet.create({
     paddingTop: 28,
     paddingHorizontal: 16,
     gap: 20,
-    paddingBottom: 40,
+    // paddingBottom: 40,
+    height: 480,
   },
   cartHeaderContainer: {
     flexDirection: "row",

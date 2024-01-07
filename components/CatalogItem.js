@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     width: 240,
     position: "absolute",
-    bottom: -24,
+    bottom: -35,
   },
   touchHighlight: {
     width: "100%",

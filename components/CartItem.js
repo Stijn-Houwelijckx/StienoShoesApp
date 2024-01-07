@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   TouchableOpacity,
@@ -13,6 +13,18 @@ import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import FilledGradientButton from "../components/FilledGradientButton";
 
 const CartItem = (props) => {
+  const [count, setCount] = useState(props.count);
+
+  // Update count when the "add" button is pressed
+  const handleAddPress = () => {
+    setCount(count + 1);
+  };
+
+  // Update count when the "remove" button is pressed, ensuring it doesn't go below 0
+  const handleRemovePress = () => {
+    setCount(Math.max(0, count - 1));
+  };
+
   //   console.log("test: " + props.shoeImage);
   if (Platform.OS === "android") {
     shoeImage = props.shoeImage.replace(
@@ -22,6 +34,8 @@ const CartItem = (props) => {
   }
 
   //   console.log("test after: " + shoeImage);
+
+  //   console.log(props);
 
   return (
     <View style={styles.container}>
@@ -46,14 +60,22 @@ const CartItem = (props) => {
         </View>
       </TouchableHighlight>
       <View style={styles.countContainer}>
-        <Text style={styles.counter}>2</Text>
+        <Text style={styles.counter}>{count}</Text>
 
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} activeOpacity={0.5}>
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.5}
+            onPress={handleAddPress}
+          >
             <IonIcon name="add" size={24} color="#fff" />
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} activeOpacity={0.5}>
+          <TouchableOpacity
+            style={styles.button}
+            activeOpacity={0.5}
+            onPress={handleRemovePress}
+          >
             <IonIcon name="remove" size={24} color="#fff" />
           </TouchableOpacity>
         </View>
@@ -73,6 +95,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
 
     justifyContent: "space-between",
+
+    marginBottom: 12,
   },
   productInfoContainer: {
     gap: 4,
