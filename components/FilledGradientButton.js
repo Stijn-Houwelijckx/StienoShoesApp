@@ -15,8 +15,8 @@ const CatalogItem = (props) => {
       <LinearGradient
         colors={["#FCAD72", "#FF626D"]}
         style={styles.button}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
+        start={{ x: 1, y: 0 }}
+        end={{ x: 0, y: 0 }}
       >
         <Text style={styles.buttonText}>{props.buttonText}</Text>
       </LinearGradient>
