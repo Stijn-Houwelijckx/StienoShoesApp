@@ -16,12 +16,12 @@ const CartItem = (props) => {
   const [count, setCount] = useState(props.count);
 
   // Update count when the "add" button is pressed
-  const handleAddPress = () => {
+  const handleCountIncreasePress = () => {
     setCount(count + 1);
   };
 
   // Update count when the "remove" button is pressed, ensuring it doesn't go below 0
-  const handleRemovePress = () => {
+  const handleCountDecreasePress = () => {
     setCount(Math.max(0, count - 1));
   };
 
@@ -66,7 +66,7 @@ const CartItem = (props) => {
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.5}
-            onPress={handleAddPress}
+            onPress={handleCountIncreasePress}
           >
             <IonIcon name="add" size={24} color="#fff" />
           </TouchableOpacity>
@@ -74,7 +74,7 @@ const CartItem = (props) => {
           <TouchableOpacity
             style={styles.button}
             activeOpacity={0.5}
-            onPress={handleRemovePress}
+            onPress={handleCountDecreasePress}
           >
             <IonIcon name="remove" size={24} color="#fff" />
           </TouchableOpacity>

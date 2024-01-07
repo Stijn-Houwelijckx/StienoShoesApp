@@ -30,7 +30,7 @@ const CartScreen = ({ navigation }) => {
         //ddev describe om port number te weten te komen
         url = `http://10.0.2.2:${portNumber}/api/catalog/`;
       } else {
-        url = "http://stienoshoes.ddev.site//api/catalog/";
+        url = "http://stienoshoes.ddev.site/api/catalog/";
       }
 
       const response = await fetch(url, {
@@ -89,8 +89,6 @@ const CartScreen = ({ navigation }) => {
             <Text style={styles.emptyText}>No items in the cart</Text>
           ) : (
             <>
-              {/* Display the item IDs in the cart */}
-              {/* Map over products array instead of selectedItems */}
               {/* Map over selectedItems */}
               {selectedItems.map(({ itemId, count }) => {
                 const product = products.find((p) => p.id === itemId);
@@ -108,16 +106,11 @@ const CartScreen = ({ navigation }) => {
                     shoePrice={(product.price?.amount / 100)?.toFixed(2)}
                     count={count}
                   />
-
-                  // <Text key={itemId}>
-                  //   {product ? product.title : "Product not found"}
-                  // </Text>
                 );
               })}
             </>
           )}
         </ScrollView>
-        {/* Button to clear the items in the cart */}
       </View>
 
       <View style={styles.cartCheckoutContainer}>

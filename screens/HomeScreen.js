@@ -30,7 +30,7 @@ const HomeScreen = ({ navigation }) => {
         //ddev describe om port number te weten te komen
         url = `http://10.0.2.2:${portNumber}/api/catalog/`;
       } else {
-        url = "http://stienoshoes.ddev.site//api/catalog/";
+        url = "http://stienoshoes.ddev.site/api/catalog/";
       }
 
       const response = await fetch(url, {
