@@ -21,7 +21,7 @@ const ProductScreen = ({ navigation, route }) => {
 
   const [product, setProduct] = useState([]);
 
-  const { addToCart } = useSelectedItemsContext();
+  const { addToCart, portNumber } = useSelectedItemsContext();
 
   const getProduct = async () => {
     try {
@@ -30,7 +30,7 @@ const ProductScreen = ({ navigation, route }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:55033/api/catalog/";
+        url = `http://10.0.2.2:${portNumber}/api/catalog/`;
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -52,7 +52,7 @@ const ProductScreen = ({ navigation, route }) => {
       if (Platform.OS == "android") {
         json.productImg = json.productImg.replace(
           "stienoshoes.ddev.site",
-          "10.0.2.2:55033"
+          `10.0.2.2:${portNumber}`
         );
       }
 

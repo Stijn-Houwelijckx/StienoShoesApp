@@ -15,9 +15,11 @@ import { LinearGradient } from "expo-linear-gradient";
 
 import BottomNav from "../components/BottomNav";
 import PopularCard from "../components/PopularCard";
+import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 
 const HomeScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
+  const { portNumber } = useSelectedItemsContext();
 
   const getProducts = async () => {
     try {
@@ -26,7 +28,7 @@ const HomeScreen = ({ navigation }) => {
       let url;
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
-        url = "http://10.0.2.2:55033/api/catalog/";
+        url = `http://10.0.2.2:${portNumber}/api/catalog/`;
       } else {
         url = "http://stienoshoes.ddev.site//api/catalog/";
       }
@@ -52,7 +54,10 @@ const HomeScreen = ({ navigation }) => {
 
   const replaceImageUrl = (imageUrl) => {
     if (Platform.OS == "android") {
-      imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:55033");
+      imageUrl = imageUrl.replace(
+        "stienoshoes.ddev.site",
+        `10.0.2.2:${portNumber}`
+      );
     }
     // console.log(imageUrl);
     return imageUrl;
