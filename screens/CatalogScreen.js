@@ -17,6 +17,7 @@ import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 
 const CatalogScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
+  const [sortOrder, setSortOrder] = useState("asc"); // Default sorting order is ascending
   const { addToCart, portNumber } = useSelectedItemsContext();
 
   const getProducts = async () => {
@@ -44,9 +45,21 @@ const CatalogScreen = ({ navigation }) => {
     }
   };
 
+  const sortProducts = () => {
+    const sortedProducts = [...products].sort((a, b) => {
+      const priceA = a.price.amount;
+      const priceB = b.price.amount;
+      return sortOrder === "asc" ? priceA - priceB : priceB - priceA;
+    });
+
+    console.log(sortedProducts[0].price.amount);
+
+    setProducts(sortedProducts);
+  };
+
   useEffect(() => {
     getProducts();
-  }, []);
+  }, []); // Fetch products only once when the component mounts
 
   // console.log(products);
 
@@ -62,6 +75,17 @@ const CatalogScreen = ({ navigation }) => {
     <View style={styles.screen}>
       <LinearGradient colors={["#FCAD72", "#FF626D"]} style={styles.background}>
         <Text style={styles.title}>Catalog.</Text>
+        <View style={styles.sortBtn}>
+          <Button
+            title={`Sort ${
+              sortOrder === "asc" ? "Low to High" : "High to Low"
+            }`}
+            onPress={() => {
+              setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+              sortProducts();
+            }}
+          />
+        </View>
       </LinearGradient>
 
       <FlatList
@@ -114,12 +138,18 @@ const styles = StyleSheet.create({
     marginBottom: "-27%",
     borderBottomLeftRadius: 40,
     borderBottomRightRadius: 40,
+
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   title: {
     fontSize: 24,
     fontWeight: "bold",
     color: "#FFFFFF",
     paddingLeft: 16,
+  },
+  sortBtn: {
+    marginRight: 16,
   },
   catalogContainer: {
     paddingHorizontal: 16,
