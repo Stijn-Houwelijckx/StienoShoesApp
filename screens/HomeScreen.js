@@ -29,6 +29,7 @@ const HomeScreen = ({ navigation }) => {
       if (Platform.OS == "android") {
         //ddev describe om port number te weten te komen
         url = `http://10.0.2.2:${portNumber}/api/catalog/`;
+        console.log(url);
       } else {
         url = "http://stienoshoes.ddev.site/api/catalog/";
       }

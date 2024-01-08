@@ -21,6 +21,8 @@ const CartScreen = ({ navigation }) => {
   const [products, setProducts] = useState([]);
   const { selectedItems, clearCart, portNumber } = useSelectedItemsContext();
 
+  let totalPrice = 0;
+
   const getProducts = async () => {
     try {
       //10.0.2.2:60628
@@ -50,7 +52,7 @@ const CartScreen = ({ navigation }) => {
     getProducts();
   }, []);
 
-  console.log("Products:", products);
+  // console.log("Products:", products);
 
   // console.log("CartScreen: " + selectedItems.itemId);
 
@@ -75,7 +77,7 @@ const CartScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
         <ScrollView style={styles.cartContent}>
-          {console.log(
+          {/* {console.log(
             "CartScreen beforeCheck: " +
               (selectedItems && selectedItems.length > 0
                 ? selectedItems
@@ -84,7 +86,7 @@ const CartScreen = ({ navigation }) => {
                     )
                     .join(", ")
                 : "empty")
-          )}
+          )} */}
           {selectedItems.length === 0 ? (
             <Text style={styles.emptyText}>No items in the cart</Text>
           ) : (
@@ -97,10 +99,13 @@ const CartScreen = ({ navigation }) => {
                   return null; // or handle the case when 'product' is undefined
                 }
 
+                totalPrice += count * (product.price?.amount / 100);
+
                 return (
                   <CartItem
                     key={product.id}
-                    portNumber={portNumber}
+                    id={product.id}
+                    // portNumber={portNumber}
                     shoeImage={product.productImg}
                     shoeName={product.title}
                     shoePrice={(product.price?.amount / 100)?.toFixed(2)}
@@ -114,7 +119,9 @@ const CartScreen = ({ navigation }) => {
       </View>
 
       <View style={styles.cartCheckoutContainer}>
-        <Text style={styles.totalText}>Subtotal € </Text>
+        <Text style={styles.totalText}>
+          Subtotal € {totalPrice?.toFixed(2)}
+        </Text>
         <FilledGradientButton
           buttonText="Checkout"
           onPress={() => {

@@ -35,12 +35,12 @@ const ProductScreen = ({ navigation, route }) => {
         url = "http://stienoshoes.ddev.site/api/catalog/";
       }
 
-      console.log(url);
-      console.log(id);
+      // console.log(url);
+      // console.log(id);
 
       url += id;
 
-      console.log(url);
+      // console.log(url);
 
       const response = await fetch(url, {
         method: "GET",
@@ -109,14 +109,6 @@ const ProductScreen = ({ navigation, route }) => {
           onPress={() => addToCart(product.id)}
         />
       </View>
-
-      {/* <Text style={styles.text}>{(product.price.amount / 100).toFixed(2)}</Text> */}
-
-      {/* {product.sizes?.map((size) => (
-        <Text key={size} style={styles.sizeText}>
-          {size}
-        </Text>
-      ))} */}
     </LinearGradient>
   );
 };

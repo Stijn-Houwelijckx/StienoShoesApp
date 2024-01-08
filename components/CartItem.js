@@ -10,28 +10,45 @@ import {
 import IonIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
+import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 import FilledGradientButton from "../components/FilledGradientButton";
 
 const CartItem = (props) => {
-  const [count, setCount] = useState(props.count);
+  const { addToCart, portNumber, selectedItems } = useSelectedItemsContext();
+  const [count, setCount] = useState(0);
+
+  // Set the initial count from the context
+  useEffect(() => {
+    const existingItem = selectedItems.find((item) => item.itemId === props.id);
+    if (existingItem) {
+      setCount(existingItem.count);
+    }
+  }, [props.id, selectedItems]);
 
   // Update count when the "add" button is pressed
   const handleCountIncreasePress = () => {
-    setCount(count + 1);
+    const newCount = count + 1;
+    setCount(newCount);
+    addToCart(props.id, newCount);
   };
 
   // Update count when the "remove" button is pressed, ensuring it doesn't go below 0
   const handleCountDecreasePress = () => {
-    setCount(Math.max(0, count - 1));
+    const newCount = Math.max(0, count - 1);
+    setCount(newCount);
+    addToCart(props.id, newCount);
   };
 
   //   console.log("test: " + props.shoeImage);
   if (Platform.OS === "android") {
     shoeImage = props.shoeImage.replace(
       "stienoshoes.ddev.site",
-      `10.0.2.2:${props.portNumber}`
+      `10.0.2.2:${portNumber}`
     );
   }
+
+  console.log(selectedItems);
+  console.log("Current count: " + count);
 
   //   console.log("test after: " + shoeImage);
 
