@@ -14,7 +14,8 @@ import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 import FilledGradientButton from "../components/FilledGradientButton";
 
 const CartItem = (props) => {
-  const { addToCart, portNumber, selectedItems } = useSelectedItemsContext();
+  const { addToCart, portNumber, selectedItems, setSelectedItems } =
+    useSelectedItemsContext();
   const [count, setCount] = useState(0);
 
   // Set the initial count from the context
@@ -36,7 +37,15 @@ const CartItem = (props) => {
   const handleCountDecreasePress = () => {
     const newCount = Math.max(0, count - 1);
     setCount(newCount);
-    addToCart(props.id, newCount);
+
+    if (newCount === 0) {
+      const updatedItems = selectedItems.filter(
+        (item) => item.itemId !== props.id
+      );
+      setSelectedItems(updatedItems);
+    } else {
+      addToCart(props.id, newCount);
+    }
   };
 
   //   console.log("test: " + props.shoeImage);
