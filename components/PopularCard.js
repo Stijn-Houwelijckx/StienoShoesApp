@@ -1,7 +1,5 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
-import IonIcon from "react-native-vector-icons/Ionicons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const PopularCard = (props) => {
   //   console.log(props.shoeImage);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   View,
   TouchableOpacity,
@@ -7,14 +7,7 @@ import {
   Image,
   FlatList,
 } from "react-native";
-import IonIcon from "react-native-vector-icons/Ionicons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 import { LinearGradient } from "expo-linear-gradient";
-import RadioForm, {
-  RadioButton,
-  RadioButtonInput,
-  RadioButtonLabel,
-} from "react-native-simple-radio-button";
 
 const SizeSelector = (props) => {
   const [value, setValue] = useState(0);
@@ -77,7 +70,6 @@ const styles = StyleSheet.create({
     margin: 5,
   },
   gradient: {
-    // borderRadius: 8,
     width: "100%",
     height: "100%",
     justifyContent: "center",

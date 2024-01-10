@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  Button,
-} from "react-native";
+import { StyleSheet, Text, View, FlatList, Button } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import BottomNav from "../components/BottomNav";
@@ -62,14 +53,6 @@ const CatalogScreen = ({ navigation }) => {
   }, []); // Fetch products only once when the component mounts
 
   // console.log(products);
-
-  // const replaceImageUrl = (imageUrl) => {
-  //   if (Platform.OS == "android") {
-  //     imageUrl = imageUrl.replace("stienoshoes.ddev.site", "10.0.2.2:52951");
-  //   }
-  //   console.log(imageUrl);
-  //   return imageUrl;
-  // };
 
   return (
     <View style={styles.screen}>
@@ -129,7 +112,6 @@ const CatalogScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // justifyContent: "center",
     backgroundColor: "#0F0F0F",
   },
   background: {

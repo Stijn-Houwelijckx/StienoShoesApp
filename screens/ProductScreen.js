@@ -1,14 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  Button,
-} from "react-native";
+import React, { useState } from "react";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { useFocusEffect } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 
@@ -16,7 +7,7 @@ import SizeSelector from "../components/SizeSelector";
 import FilledGradientButton from "../components/FilledGradientButton";
 import { useSelectedItemsContext } from "../components/SelectedItemsContext";
 
-const ProductScreen = ({ navigation, route }) => {
+const ProductScreen = ({ route }) => {
   const { id } = route.params;
 
   const [product, setProduct] = useState([]);
@@ -116,8 +107,6 @@ const ProductScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // justifyContent: "center",
-    // alignItems: "center",
     backgroundColor: "#F8F6F6",
   },
   titleContainer: {

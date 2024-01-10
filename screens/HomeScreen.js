@@ -1,16 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  FlatList,
-  Button,
-  Platform,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, Platform, ScrollView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 import BottomNav from "../components/BottomNav";
@@ -102,13 +91,10 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
     gap: 80,
-    // justifyContent: "center",
-    // backgroundColor: "#F8F6F6",
   },
   popularSection: {
     paddingTop: 28,
     gap: 20,
-    // paddingHorizontal: 16,
   },
   title: {
     fontSize: 24,
@@ -122,7 +108,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   recentSection: {
-    // width: "100%",
     height: "100%",
     backgroundColor: "#3D3D3F",
     paddingTop: 28,

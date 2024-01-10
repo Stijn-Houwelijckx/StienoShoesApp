@@ -1,7 +1,5 @@
 import React from "react";
-import { View, TouchableOpacity, StyleSheet, Text, Image } from "react-native";
-import IonIcon from "react-native-vector-icons/Ionicons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
+import { TouchableOpacity, StyleSheet, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const CatalogItem = (props) => {
@@ -35,7 +33,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#FFFFFF",
     fontSize: 20,
-    // fontWeight: "bold",
+
     textTransform: "uppercase",
   },
 });

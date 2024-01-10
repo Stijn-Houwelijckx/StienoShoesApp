@@ -1,6 +1,5 @@
 import React from "react";
 import { View, TouchableOpacity, StyleSheet, Text } from "react-native";
-import IonIcon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 const BottomNav = ({ navigation, activeScreen }) => {
@@ -78,7 +77,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "red",
   },
   iconContainer: {
     paddingVertical: 8,

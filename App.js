@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Button, TouchableOpacity, Text, Image } from "react-native";
+import { TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { SelectedItemsProvider } from "./components/SelectedItemsContext";
 
@@ -36,18 +34,10 @@ export default function App() {
             name="Catalog"
             component={CatalogScreen}
             options={{
-              // title: "My home",
               headerStyle: { backgroundColor: "#3D3D3F" },
               headerTintColor: "#fff",
               headerTitleStyle: { fontWeight: "bold" },
               headerTitleAlign: "left",
-              // headerRight: () => (
-              //   <Button
-              //     onPress={() => alert("This is a button!")}
-              //     title="Info"
-              //     color="#fff"
-              //   />
-              // ),
 
               headerBackVisible: false,
               animation: "none",
@@ -82,7 +72,6 @@ export default function App() {
             name="Cart"
             component={CartScreen}
             options={{
-              // title: "My home",
               headerStyle: { backgroundColor: "#3D3D3F" },
               headerTintColor: "#fff",
               headerTitleStyle: { fontWeight: "bold" },

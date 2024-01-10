@@ -8,10 +8,8 @@ import {
   TouchableHighlight,
 } from "react-native";
 import IonIcon from "react-native-vector-icons/Ionicons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import { useSelectedItemsContext } from "../components/SelectedItemsContext";
-import FilledGradientButton from "../components/FilledGradientButton";
 
 const CartItem = (props) => {
   const { addToCart, portNumber, selectedItems, setSelectedItems } =
@@ -69,14 +67,12 @@ const CartItem = (props) => {
         style={styles.touchHighlight}
         activeOpacity={0.9}
         underlayColor="rgba(255, 255, 255, 0.1)"
-        // onPress={() => props.onSelectProduct(props.id)}
       >
         <View style={styles.productInfoContainer}>
           <View style={styles.imageContainer}>
             <Image
               style={[styles.shoeImage, { width: 100, height: 63 }]}
               source={{ uri: shoeImage }}
-              //   source={require("../assets/FlexFit-Fusion.png")}
             />
           </View>
           <View style={styles.textContainer}>
@@ -112,7 +108,6 @@ const CartItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    // gap: 4,
     backgroundColor: "#3D3D3F",
     borderRadius: 8,
     paddingHorizontal: 16,
@@ -138,7 +133,7 @@ const styles = StyleSheet.create({
   textContainer: {
     gap: 4,
     paddingHorizontal: 8,
-    // alignItems: "center",
+
     maxWidth: 170,
   },
   shoeName: {

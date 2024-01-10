@@ -1,14 +1,11 @@
 import React from "react";
 import {
   View,
-  TouchableOpacity,
   StyleSheet,
   Text,
   Image,
   TouchableHighlight,
 } from "react-native";
-import IonIcon from "react-native-vector-icons/Ionicons";
-import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 import FilledGradientButton from "../components/FilledGradientButton";
 
@@ -27,7 +24,6 @@ const CatalogItem = (props) => {
             <Image
               style={[styles.shoeImage, { width: 265, height: 166 }]}
               source={{ uri: props.shoeImage }}
-              //   source={require("../assets/FlexFit-Fusion.png")}
             />
           </View>
           <View style={styles.textContainer}>
@@ -48,13 +44,11 @@ const CatalogItem = (props) => {
 
 const styles = StyleSheet.create({
   container: {
-    // gap: 4,
     backgroundColor: "#2E2E30",
     borderRadius: 12,
 
     alignItems: "center",
 
-    // paddingBottom: 44,
     marginBottom: 52,
   },
   productInfoContainer: {

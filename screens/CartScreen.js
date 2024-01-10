@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { StatusBar } from "expo-status-bar";
 import {
   StyleSheet,
   Text,
   View,
-  Image,
   TouchableOpacity,
-  FlatList,
-  Button,
   ScrollView,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
@@ -105,7 +101,6 @@ const CartScreen = ({ navigation }) => {
                   <CartItem
                     key={product.id}
                     id={product.id}
-                    // portNumber={portNumber}
                     shoeImage={product.productImg}
                     shoeName={product.title}
                     shoePrice={(product.price?.amount / 100)?.toFixed(2)}
@@ -130,9 +125,6 @@ const CartScreen = ({ navigation }) => {
         />
       </View>
 
-      {/* Your screen content */}
-      {/* <Text>This is the Home Screen</Text> */}
-
       {/* Bottom Navigation */}
       <BottomNav navigation={navigation} activeScreen={"Cart"} />
     </View>
@@ -142,7 +134,6 @@ const CartScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // justifyContent: "center",
     backgroundColor: "#2E2E30",
     justifyContent: "space-between",
   },
@@ -150,7 +141,6 @@ const styles = StyleSheet.create({
     paddingTop: 28,
     paddingHorizontal: 16,
     gap: 20,
-    // paddingBottom: 40,
     height: 480,
   },
   cartHeaderContainer: {
@@ -180,7 +170,6 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 16,
     textTransform: "uppercase",
-    // fontWeight: "bold",
     textAlign: "center",
     color: "#FD8770",
     backgroundColor: "#2E2E30",
@@ -189,7 +178,6 @@ const styles = StyleSheet.create({
     borderRadius: 360,
   },
   cartCheckoutContainer: {
-    // width: "100%",
     paddingVertical: 28,
     paddingBottom: 120,
     backgroundColor: "#3D3D3F",
