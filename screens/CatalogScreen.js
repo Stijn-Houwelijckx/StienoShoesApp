@@ -150,6 +150,9 @@ const styles = StyleSheet.create({
   },
   sortBtn: {
     marginRight: 16,
+    borderRadius: 10,
+    overflow: "hidden",
+    height: 35,
   },
   catalogContainer: {
     paddingHorizontal: 16,
