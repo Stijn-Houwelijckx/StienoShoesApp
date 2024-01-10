@@ -11,7 +11,7 @@ export const useSelectedItemsContext = () => {
 // Provider component that wraps its children and provides the context value
 export const SelectedItemsProvider = ({ children }) => {
   const [selectedItems, setSelectedItems] = useState([]);
-  const portNumber = "52852"; // Set your default port number here
+  const portNumber = "55595"; // Set your default port number here
   // State to manage selected item IDs
 
   // Function to add an item to the cart
