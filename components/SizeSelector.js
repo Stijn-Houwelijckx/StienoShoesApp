@@ -12,6 +12,7 @@ import { LinearGradient } from "expo-linear-gradient";
 const SizeSelector = (props) => {
   const [value, setValue] = useState(0);
 
+  // Create radioProps based on sizes
   const radioProps = props.sizes
     ? props.sizes.map((size, index) => ({
         label: size,
@@ -19,13 +20,15 @@ const SizeSelector = (props) => {
       }))
     : [];
 
+  // Function triggered when a radio button is pressed
   const handleRadioButtonPress = (selectedValue) => {
+    // Set the selected radio button value to the component state
     setValue(selectedValue);
     console.log("Selected Size:", props.sizes[selectedValue]);
   };
 
   const renderRadioButton = ({ item }) => {
-    const isSelected = value === item.value;
+    const isSelected = value === item.value; // Check if the current radio button is selected
 
     return (
       <TouchableOpacity

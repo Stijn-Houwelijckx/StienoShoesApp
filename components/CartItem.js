@@ -18,30 +18,37 @@ const CartItem = (props) => {
 
   // Set the initial count from the context
   useEffect(() => {
+    // Find the selected item in the context state based on its itemId
     const existingItem = selectedItems.find((item) => item.itemId === props.id);
+
+    // If the item is found in the context state, update the local count state
     if (existingItem) {
+      // Set the local count state to the count value of the existing item
       setCount(existingItem.count);
     }
   }, [props.id, selectedItems]);
 
   // Update count when the "add" button is pressed
   const handleCountIncreasePress = () => {
-    const newCount = count + 1;
-    setCount(newCount);
-    addToCart(props.id, newCount);
+    const newCount = count + 1; // Increment the count by 1
+    setCount(newCount); // Update the local count state with the new count
+    addToCart(props.id, newCount); // Add the updated count to the cart using addToCart function
   };
 
   // Update count when the "remove" button is pressed, ensuring it doesn't go below 0
   const handleCountDecreasePress = () => {
-    const newCount = Math.max(0, count - 1);
-    setCount(newCount);
+    const newCount = Math.max(0, count - 1); // Calculate the new count, ensuring it doesn't go below 0
+    setCount(newCount); // Update the local count state with the new count
 
+    // Check if the new count is 0
     if (newCount === 0) {
+      // If the count is 0, remove the item from selectedItems
       const updatedItems = selectedItems.filter(
         (item) => item.itemId !== props.id
       );
       setSelectedItems(updatedItems);
     } else {
+      // If the count is greater than 0, update the count in the cart using addToCart function
       addToCart(props.id, newCount);
     }
   };

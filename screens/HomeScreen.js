@@ -42,6 +42,7 @@ const HomeScreen = ({ navigation }) => {
 
   // console.log(products);
 
+  // Function to replace image URL for android
   const replaceImageUrl = (imageUrl) => {
     if (Platform.OS == "android") {
       imageUrl = imageUrl.replace(
@@ -62,12 +63,13 @@ const HomeScreen = ({ navigation }) => {
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.popularCardsContainer}
         >
+          {/* Map through the first 3 products and render PopularCard components */}
           {products.slice(0, 3).map((product, index) => (
             <PopularCard
               key={index}
               id={product.id}
               shoeName={product.title}
-              shoePrice={(product.price.amount / 100).toFixed(2)}
+              shoePrice={(product.price.amount / 100).toFixed(2)} // Divide amount by 100 because api removed the comma
               shoeImage={replaceImageUrl(product.productImg)}
               onSelectProduct={(selectedId) => {
                 navigation.navigate("Product", { id: selectedId });

@@ -37,14 +37,19 @@ const CatalogScreen = ({ navigation }) => {
   };
 
   const sortProducts = () => {
+    // Create a copy of the products array to avoid modifying the original array
     const sortedProducts = [...products].sort((a, b) => {
       const priceA = a.price.amount;
       const priceB = b.price.amount;
+
+      // Determine the sorting order based on the sortOrder state
+      // If sortOrder is "asc", sort in ascending order, otherwise, sort in descending order
       return sortOrder === "asc" ? priceA - priceB : priceB - priceA;
     });
 
     console.log(sortedProducts[0].price.amount);
 
+    // Update the state with the sorted products array
     setProducts(sortedProducts);
   };
 
